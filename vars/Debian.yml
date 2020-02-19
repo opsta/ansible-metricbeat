@@ -1,0 +1,5 @@
+---
+install_metricbeat: metricbeat
+apt_elastic_key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+apt_transport_package: apt-transport-https
+apt_elastic_repository: deb https://artifacts.elastic.co/packages/7.x/apt stable main

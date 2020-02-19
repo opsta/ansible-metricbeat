@@ -1,6 +1,6 @@
 ---
 - name: Copy configuration file
   template:
-    src: metricbeat.yml.j2
-    dest: /etc/metricbeat/metricbeat.yml
+    src: "{{ metricbeat_config_file_src_path }}"
+    dest: "{{ metricbeat_config_file_dest_path }}"
   notify: Restart Metricbeats
