@@ -1,6 +1,0 @@
----
-- name: Install Metricbeats
-  apt:
-    name: "{{apt_install_metricbeat}}"
-    update_cache: yes
-  when: ansible_os_family == 'Debian'

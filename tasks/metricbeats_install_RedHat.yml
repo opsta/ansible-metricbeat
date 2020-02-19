@@ -1,5 +1,5 @@
 ---
 - name: Install Metricbeats
-  apt:
+  yum:
     name: "{{install_metricbeat}}"
-    update_cache: yes
+    state: present

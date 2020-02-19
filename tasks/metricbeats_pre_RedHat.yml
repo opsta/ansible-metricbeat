@@ -1,0 +1,12 @@
+---
+- name: Add Elasticsearch repository
+  rpm_key:
+    key: "{{yum_elastic_key}}"
+
+- name: Create elastic file with .repo extension
+  yum_repository:
+    name: "{{yum_elastic_repository_name}}"
+    description: "Elasticsearch YUM repository"
+    baseurl: "{{ yum_elastic_repository }}"
+    gpgkey: "{{ yum_elastic_key_url }}"
+    gpgcheck: true

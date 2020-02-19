@@ -7,11 +7,21 @@ elasticsearch_username: elastic
 elasticsearch_password: opstathailand
 elasticsearch_protocol: https
 
-apt_install_metricbeat: metricbeat
+install_metricbeat: metricbeat
 apt_elastic_key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+yum_elastic_key: https://packages.elastic.co/GPG-KEY-elasticsearch
+yum_elastic_key_url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
 apt_transport_package: apt-transport-https
+
 apt_elastic_repository: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+yum_elastic_repository: https://artifacts.elastic.co/packages/7.x/yum
+yum_elastic_repository_name: Elastic repository for 7.x packages
+
 elastic_repository_filename: elastic-7.x.list
+
+
+
 
 metricbeat_config_file_src_path: metricbeat.yml.j2
 metricbeat_config_file_dest_path: /etc/metricbeat/metricbeat.yml
