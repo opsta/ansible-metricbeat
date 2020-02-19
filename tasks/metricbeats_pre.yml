@@ -1,18 +1,18 @@
 ---
 - name: Add Elasticsearch repository key
   apt_key:
-    url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+    url: "{{apt_elastic_key}}"
   when: ansible_os_family == 'Debian'
 
 - name: Install Package
   apt:
-    name: "apt-transport-https"
+    name: "{{apt_transport_package}}"
     state: present
     update_cache: yes
   when: ansible_os_family == 'Debian'
 
 - name: Save Elasticsearch repository
   apt_repository:
-    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
-    filename: elastic-7.x.list 
+    repo: "{{apt_elastic_repository}}"
+    filename: "{{elastic_repository_filename}}"
   
