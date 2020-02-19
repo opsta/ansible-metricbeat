@@ -1,0 +1,16 @@
+---
+- name: Add Elasticsearch repository key
+  apt_key:
+    url: "{{apt_elastic_key}}"
+
+- name: Install Package
+  apt:
+    name: "{{apt_transport_package}}"
+    state: present
+    update_cache: yes
+
+- name: Save Elasticsearch repository
+  apt_repository:
+    repo: "{{apt_elastic_repository}}"
+    filename: "{{elastic_repository_filename}}"
+  

@@ -1,6 +1,4 @@
 ---
-- include_tasks: metricbeats_pre.yml
-  when: ansible_os_family == 'Debian'
-- include_tasks: metricbeats_install.yml
-  when: ansible_os_family == 'Debian'
-- include_tasks: metricbeats_post.yml
+- include_tasks: metricbeats_pre_{{ ansible_os_family }}.yml
+- include_tasks: metricbeats_install_{{ ansible_os_family }}.yml
+- include_tasks: metricbeats_post_{{ ansible_os_family }}.yml
