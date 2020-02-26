@@ -1,0 +1,32 @@
+---
+  - name: Search Configure | Set list of path to look for local RabbitMQ configuration directory
+    set_fact:
+      metricbeat_search_config_paths: "{{ metricbeat_search_config_paths }} + [ '{{ metricbeat_search_config_path }}' ]"
+    with_items: "{{ group_names }}"
+  - debug: var=metricbeat_search_config_paths
+
+  - name: Search Configure | Check if RabbitMQ configuration directory exists
+    stat:
+      path: "{{ item }}"
+    register: metricbeat_config_check
+    become: false
+    delegate_to: 127.0.0.1
+    with_first_found:
+      - files: "{{ metricbeat_search_config_paths }}"
+        skip: true
+
+  - name: Search Configure | Set RabbitMQ configuration directory
+    set_fact:
+      metricbeat_host_config_path: "{{ metricbeat_config_check.results[0].stat.path }}"
+    when:
+      - metricbeat_config_check.results[0] is defined
+      - metricbeat_config_check.results[0].stat is defined
+      - metricbeat_config_check.results[0].stat.isdir
+  - debug: var=metricbeat_host_config_path
+
+  - name: Search Configure | Check if RabbitMQ template configuration file is exists
+    stat:
+      path: "{{ metricbeat_host_config_file_path }}"
+    become: false
+    delegate_to: 127.0.0.1
+    register: metricbeat_config_check

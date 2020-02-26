@@ -1,6 +1,6 @@
 ---
-    - name: Restart Metricbeats
-      service:
-        name: metricbeat
-        state: restarted
-        enabled: true
+- name: Restart Metricbeats
+  systemd:
+    name: metricbeat
+    state: restarted
+    enabled: true

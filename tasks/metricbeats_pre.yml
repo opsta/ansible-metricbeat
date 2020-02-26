@@ -1,0 +1,26 @@
+---
+- block:
+  - name: DEB | Add Metricbeat repository key
+    apt_key:
+      url: "{{ metricbeat_apt_key_url }}"
+      state: present
+
+  - name: DEB | Add Metricbeat apt-repository
+    apt_repository:
+      repo: "{{ metricbeat_apt_repo }}"
+      state: present
+  when: ansible_os_family == 'Debian'
+
+- block:
+  - name: RH | Add Metricbeat rpm key
+    rpm_key:
+      key: "{{ metricbeat_yum_key_url }}"
+
+  - name: RH | Add Metricbeat repository
+    yum_repository:
+      name: "{{ metricbeat_yum_repo_name }}"
+      description: "{{ metricbeat_yum_repo_description }}"
+      baseurl: "{{ metricbeat_yum_repo }}"
+      gpgkey: "{{ metricbeat_yum_key_extenion_url }}"
+      gpgcheck: true
+  when: ansible_os_family == 'RedHat'
