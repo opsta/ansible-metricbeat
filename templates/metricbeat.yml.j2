@@ -87,7 +87,7 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: {{elastichost}}
+  hosts: {{ metricbeat_elastichost }}
 
   # Protocol - either `http` (default) or `https`.
   #protocol: "https"
