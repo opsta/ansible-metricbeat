@@ -1,10 +1,12 @@
-elastichost: ["elk-demo.opsta.in.th:9200"]
+
+
+elastichost: '35.213.184.60:9200'
 
 # If elastic_https_enabled is set, you must provide username and password
-elastic_https_enabled: true
+elastic_https_enabled: false
 elasticsearch_username: elastic
 elasticsearch_password: opstathailand
-elasticsearch_protocol: https
+elasticsearch_protocol: http
 
 elastic_repository_filename: elastic-7.x.list
 

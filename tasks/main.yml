@@ -1,4 +1,10 @@
 ---
+- name: Include OS family specific variables
+  include_vars: "{{ item }}"                
+  with_first_found:                         
+    - "{{ ansible_os_family }}.yml"         
+
+
 - include_tasks: metricbeats_pre_{{ ansible_os_family }}.yml
 - include_tasks: metricbeats_install_{{ ansible_os_family }}.yml
 - include_tasks: metricbeats_post_{{ ansible_os_family }}.yml
