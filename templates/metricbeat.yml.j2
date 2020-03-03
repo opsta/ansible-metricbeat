@@ -96,10 +96,10 @@ output.elasticsearch:
   #api_key: "id:api_key"
   #username: "elastic"
   #password: "changeme"
-  {% if elastic_https_enabled %}
-protocol: "{{elasticsearch_protocol}}" 
-  username: "{{elasticsearch_username }}"
-  password: "{{elasticsearch_password}}"
+  {% if metricbeat_elasticsearch_https_enabled %}
+protocol:   "{{ metricbeat_elasticsearch_protocol }}" 
+  username: "{{ metricbeat_elasticsearch_username }}"
+  password: "{{ metricbeat_elasticsearch_password }}"
   {% endif %}
 
 

@@ -1,5 +1,5 @@
 ---
 - name: Install Metricbeats
   yum:
-    name: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.0-x86_64.rpm
+    name: "{{ install_metricbeat }}"
     state: present
