@@ -2,7 +2,7 @@
 - block:
   - name: Copy configuration file
     template:
-      src: "{{ metricbeat_host_config_file_path }}"
+      src: "{{ metricbeat_host_config_file_path if metricbeat_config_check.stat.exists else 'metricbeat.yml.j2' }}"
       dest: "{{ metricbeat_config_file_path }}"
     notify: Restart Metricbeats
   when: ansible_os_family == 'Debian'
