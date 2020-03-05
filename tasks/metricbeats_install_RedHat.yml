@@ -1,5 +1,0 @@
----
-- name: Install Metricbeats
-  yum:
-    name: "{{install_metricbeat}}"
-    state: present

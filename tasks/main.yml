@@ -1,4 +1,13 @@
 ---
-- include_tasks: metricbeats_pre_{{ ansible_os_family }}.yml
-- include_tasks: metricbeats_install_{{ ansible_os_family }}.yml
-- include_tasks: metricbeats_post_{{ ansible_os_family }}.yml
+  - name: Include OS family specific variables
+    include_vars: "{{ item }}"
+    with_first_found:
+      - "{{ ansible_os_family }}.yml"
+
+  - import_tasks: metricbeat_pre.yml
+  - import_tasks: metricbeat_install.yml
+
+  - block:
+    - import_tasks: metricbeat_search_config.yml
+    - import_tasks: metricbeat_post.yml
+    tags: metricbeat-config

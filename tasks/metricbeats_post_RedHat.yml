@@ -1,6 +1,0 @@
----
-- name: Copy configuration file
-  template:
-    src: "{{ metricbeat_config_file_src_path }}"
-    dest: "{{ metricbeat_config_file_dest_path }}"
-  notify: Restart Metricbeats

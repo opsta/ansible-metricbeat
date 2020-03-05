@@ -1,5 +1,0 @@
----
-- name: Install Metricbeats
-  apt:
-    name: "{{install_metricbeat}}"
-    update_cache: yes
