@@ -1,7 +1,9 @@
 ---
 metricbeat_yum_package: metricbeat
+
+metricbeat_yum_key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
+
 metricbeat_yum_repo_name: elastic-package
 metricbeat_yum_repo_description: Elastic repository for 7.x packages
-metricbeat_yum_key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
-metricbeat_yum_repo: https://artifacts.elastic.co/packages/7.x/yum
+metricbeat_yum_repo_extention_url: https://artifacts.elastic.co/packages/7.x/yum
 metricbeat_yum_key_extenion_url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
