@@ -2,7 +2,6 @@
 
 metricbeat_elastichost: ['35.213.184.60:9200']
 
-metricbeat_name: "test_name"
 
 # If elastic_https_enabled is set, you must provide username and password
 metricbeat_elasticsearch_https_enabled: false
