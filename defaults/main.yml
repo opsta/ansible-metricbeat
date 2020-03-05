@@ -2,7 +2,6 @@
 
 metricbeat_elastichost: ['35.213.184.60:9200']
 
-metricbeat_name: "test_name"
 
 metric_custom_fields: {}
   # env: production
