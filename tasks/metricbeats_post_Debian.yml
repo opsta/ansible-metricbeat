@@ -3,5 +3,4 @@
   template:
     src: "{{ metricbeat_config_file_src_path }}"
     dest: "{{ metricbeat_config_file_dest_path }}"
-  with_dict: "{{ metric_custom_fields }}"
   notify: Restart Metricbeats
