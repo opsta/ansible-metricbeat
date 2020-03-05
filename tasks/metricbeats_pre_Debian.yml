@@ -11,6 +11,6 @@
 
 - name: Save Elasticsearch repository
   apt_repository:
-    repo: "{{apt_elastic_repository}}"
-    filename: "{{elastic_repository_filename}}"
+    repo: "{{ apt_elastic_repository }}"
+    filename: "{{ metricbeat_elasticsearch_repository_filename }}"
   

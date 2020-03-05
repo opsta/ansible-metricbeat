@@ -1,12 +1,18 @@
-elastichost: ["elk-demo.opsta.in.th:9200"]
+
+
+metricbeat_elastichost: ['35.213.184.60:9200']
+
+
+metric_custom_fields: {}
+  # env: production
 
 # If elastic_https_enabled is set, you must provide username and password
-elastic_https_enabled: true
-elasticsearch_username: elastic
-elasticsearch_password: opstathailand
-elasticsearch_protocol: https
+metricbeat_elasticsearch_https_enabled: false
+metricbeat_elasticsearch_username: elastic
+metricbeat_elasticsearch_password: opstathailand
+metricbeat_elasticsearch_protocol: http
 
-elastic_repository_filename: elastic-7.x.list
+metricbeat_elasticsearch_repository_filename: elastic-7.x.list
 
 metricbeat_config_file_src_path: metricbeat.yml.j2
 metricbeat_config_file_dest_path: /etc/metricbeat/metricbeat.yml

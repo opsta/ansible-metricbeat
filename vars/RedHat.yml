@@ -1,5 +1,5 @@
 ---
-install_metricbeat: metricbeat
+install_metricbeat: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.0-x86_64.rpm
 yum_elastic_key: https://packages.elastic.co/GPG-KEY-elasticsearch
 yum_elastic_key_url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
 yum_elastic_repository: https://artifacts.elastic.co/packages/7.x/yum

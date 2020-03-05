@@ -26,7 +26,7 @@ setup.template.settings:
 
 # The name of the shipper that publishes the network data. It can be used to group
 # all the transactions sent by a single shipper in the web interface.
-#name:
+name: {{ ansible_host }}
 
 # The tags of the shipper are included in their own field with each
 # transaction published.
@@ -34,8 +34,16 @@ setup.template.settings:
 
 # Optional fields that you can specify to add additional information to the
 # output.
-#fields:
-#  env: staging
+{% if metric_custom_fields is defined %}
+fields:
+{% for dict_item in metric_custom_fields %}
+{% for key, value in dict_item.items() %}
+  {{key}}: {{value}}
+{% endfor %}
+{% endfor %}
+
+{% endif %}
+
 
 
 #============================== Dashboards =====================================
@@ -87,7 +95,7 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: {{elastichost}}
+  hosts: {{ metricbeat_elastichost }}
 
   # Protocol - either `http` (default) or `https`.
   #protocol: "https"
@@ -96,10 +104,10 @@ output.elasticsearch:
   #api_key: "id:api_key"
   #username: "elastic"
   #password: "changeme"
-  {% if elastic_https_enabled %}
-protocol: "{{elasticsearch_protocol}}" 
-  username: "{{elasticsearch_username }}"
-  password: "{{elasticsearch_password}}"
+  {% if metricbeat_elasticsearch_https_enabled %}
+protocol:   "{{ metricbeat_elasticsearch_protocol }}" 
+  username: "{{ metricbeat_elasticsearch_username }}"
+  password: "{{ metricbeat_elasticsearch_password }}"
   {% endif %}
 
 
