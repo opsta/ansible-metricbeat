@@ -1,6 +1,6 @@
 ---
 - block:
-  - name: Install Metricbeats
+  - name: DEB | Install Metricbeats
     apt:
       name: "{{ metricbeat_apt_package }}"
       state: present
@@ -8,7 +8,7 @@
   when: ansible_os_family == 'Debian'
 
 - block:
-  - name: Install Metricbeats
+  - name: RH | Install Metricbeats
     yum:
       name: "{{ metricbeat_yum_package }}"
       state: present
