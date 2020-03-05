@@ -34,8 +34,10 @@ name: {{ metricbeat_name }}
 
 # Optional fields that you can specify to add additional information to the
 # output.
-#fields:
-#  env: staging
+{% if metric_custom_fields is defined %}
+fields:
+  {{ item.0 }}: {{ item.1 }}
+{% endif %}}
 
 
 #============================== Dashboards =====================================
