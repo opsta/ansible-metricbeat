@@ -36,10 +36,14 @@ name: {{ ansible_host }}
 # output.
 {% if metric_custom_fields is defined %}
 fields:
-  {% for i in metric_custom_fields %}
-  {{ i.key }}: {{ i.value }}
-  {% endfor %}
+{% for dict_item in metric_custom_fields %}
+{% for key, value in dict_item.items() %}
+  {{key}}: {{value}}
+{% endfor %}
+{% endfor %}
+
 {% endif %}
+
 
 
 #============================== Dashboards =====================================
