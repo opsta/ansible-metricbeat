@@ -26,7 +26,7 @@ setup.template.settings:
 
 # The name of the shipper that publishes the network data. It can be used to group
 # all the transactions sent by a single shipper in the web interface.
-#name:
+name: {{ ansible_host }}
 
 # The tags of the shipper are included in their own field with each
 # transaction published.
@@ -34,15 +34,23 @@ setup.template.settings:
 
 # Optional fields that you can specify to add additional information to the
 # output.
-#fields:
-#  env: staging
+{% if metricbeat_custom_fields is defined %}
+fields:
+  {% for key, value in metricbeat_custom_fields.items() %}
+    {{ key }}: {{ value }}
+  {% endfor %}
+{% endif %}
 
 
 #============================== Dashboards =====================================
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the
 # options here or by using the `setup` command.
-#setup.dashboards.enabled: false
+{% if metricbeat_default_dashboard_enabled is defined and metricbeat_default_dashboard_enabled is sameas true %}
+setup.dashboards.enabled: true
+{% else %}
+setup.dashboards.enabled: false
+{% endif %}
 
 # The URL from where to download the dashboards archive. By default this URL
 # has a value which is computed based on the Beat name and version. For released
@@ -60,7 +68,7 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  #host: "localhost:5601"
+  host: {{ metricbeat_kibana_host }}
 
   # Kibana Space ID
   # ID of the Kibana Space into which the dashboards should be loaded. By default,
@@ -87,20 +95,18 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: {{elastichost}}
+  hosts: {{ metricbeat_elasticsearch_hosts }}
 
+  {% if metricbeat_elasticsearch_https_enabled is defined and metricbeat_elasticsearch_https_enabled is sameas true %}
   # Protocol - either `http` (default) or `https`.
-  #protocol: "https"
+  protocol: "{{ metricbeat_elasticsearch_https_enabled['protocol'] }}"
 
   # Authentication credentials - either API key or username/password.
-  #api_key: "id:api_key"
-  #username: "elastic"
-  #password: "changeme"
-  {% if elastic_https_enabled %}
-protocol: "{{elasticsearch_protocol}}" 
-  username: "{{elasticsearch_username }}"
-  password: "{{elasticsearch_password}}"
+  api_key: "id:api_key"
+  username: "{{ metricbeat_elasticsearch_https_enabled['username'] }}"
+  password: "{{ metricbeat_elasticsearch_https_enabled['password'] }}"
   {% endif %}
+
 
 
 #----------------------------- Logstash output --------------------------------

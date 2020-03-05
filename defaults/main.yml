@@ -1,11 +1,21 @@
 # Metricbeat configure 
-es_host: ["CHANGEME:9200"]
+metricbeat_elasticsearch_hosts: 
+  - CHANGEME:9200
 
 ##  If "elastic_https_enabled" is set, you must provide username and password
-es_https_enabled: true
-es_username: elastic
-es_password: CHANGEME
-es_protocol: https
+metricbeat_elasticsearch_https_enabled: false
+# metricbeat_elasticsearch_xpac:
+#   username: elastic
+#   password: CHANGEME
+#   protocol: https
+
+metricbeat_custom_fields:
+  env: production
+  # group: 
+  # project:
+
+metricbeat_default_dashboard_enabled: true
+metricbeat_kibana_host: "35.197.144.131:5601"
 
 metricbeat_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/metricbeat"
 metricbeat_search_config_paths: []
