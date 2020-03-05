@@ -36,7 +36,7 @@ name: {{ ansible_host }}
 # output.
 {% if metric_custom_fields is defined %}
 fields:
-  {{ item.0 }}: {{ item.1 }}
+  {{ item.key }}: {{ item.value }}
 {% endif %}}
 
 
