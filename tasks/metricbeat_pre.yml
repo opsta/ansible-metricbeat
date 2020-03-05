@@ -20,7 +20,7 @@
     yum_repository:
       name: "{{ metricbeat_yum_repo_name }}"
       description: "{{ metricbeat_yum_repo_description }}"
-      baseurl: "{{ metricbeat_yum_repo }}"
+      baseurl: "{{ metricbeat_yum_repo_extention_url }}"
       gpgkey: "{{ metricbeat_yum_key_extenion_url }}"
       gpgcheck: true
   when: ansible_os_family == 'RedHat'
