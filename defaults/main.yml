@@ -4,17 +4,42 @@ metricbeat_kibana_host: "CHANGEME:5601"
 
 ##  If "elastic_https_enabled" is set, you must provide username and password
 metricbeat_elasticsearch_https_enabled: false
-# metricbeat_elasticsearch_xpac:
-  #   username: elastic
-  #   password: CHANGEME
-  #   protocol: https
-  
+# metricbeat_elasticsearch_auth:
+#   username: elastic
+#   password: CHANGEME
+
+## Optional fields that you can specify to add additional information to the output.
 metricbeat_custom_fields: {}
   # env: production
   # group: 
   # project:
 
 metricbeat_default_dashboard_enabled: false
+
+## Module configure
+metricbeat_modules:
+  - module: system
+    metricsets:
+      - cpu             
+      - load            
+      - memory          
+      - network         
+      - process         
+      - process_summary 
+      - uptime          
+      - socket_summary
+    period: 10s
+    enabled: true
+  # - module: kubernetes
+  #   metricsets:
+  #     - container
+  #     - node
+  #     - pod
+  #     - system
+  #     - volume
+  #   hosts: ["https://${HOSTNAME}:10250"]
+  #   period: 10s
+  #   enabled: true
 
 metricbeat_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/metricbeat"
 metricbeat_search_config_paths: []

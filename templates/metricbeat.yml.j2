@@ -15,6 +15,11 @@ metricbeat.config.modules:
 
   # Period on which files under path should be checked for changes
   #reload.period: 10s
+
+{% if metricbeat_modules is defined %}
+metricbeat.modules:
+  {{ metricbeat_modules | to_nice_yaml(indent=2) | trim | indent(2) }}
+{% endif %}
 #==================== Elasticsearch template setting ==========================
 
 setup.template.settings:
@@ -99,15 +104,17 @@ output.elasticsearch:
 
   {% if metricbeat_elasticsearch_https_enabled is defined and metricbeat_elasticsearch_https_enabled is sameas true %}
   # Protocol - either `http` (default) or `https`.
-  protocol: "{{ metricbeat_elasticsearch_https_enabled['protocol'] }}"
-
-  # Authentication credentials - either API key or username/password.
-  api_key: "id:api_key"
-  username: "{{ metricbeat_elasticsearch_https_enabled['username'] }}"
-  password: "{{ metricbeat_elasticsearch_https_enabled['password'] }}"
+  protocol: https
+  {% else %}
+  protocol: http
   {% endif %}
 
-
+  {% if metricbeat_elasticsearch_auth is defined %}
+  # Authentication credentials - either API key or username/password.
+  api_key: "id:api_key"
+  username: "{{ metricbeat_elasticsearch_auth['username'] }}"
+  password: "{{ metricbeat_elasticsearch_auth['password'] }}"
+  {% endif %}
 
 #----------------------------- Logstash output --------------------------------
 #output.logstash:
